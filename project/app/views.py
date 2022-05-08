@@ -1,3 +1,10 @@
-from django.shortcuts import render
+# views.py
+from rest_framework import viewsets
 
-# Create your views here.
+from .serializers import AirportDataSerializer
+from .models import AirportData
+
+
+class AirportDataViewSet(viewsets.ModelViewSet):
+    queryset = AirportData.objects.all().order_by('extract_date')
+    serializer_class = AirportDataSerializer
